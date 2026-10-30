@@ -12,7 +12,7 @@
 pub const UPDATE_APP: craft_update::app::App = craft_update::app::App {
     icon_png: Some(include_bytes!("../../../assets/app-icon/hicolor/128x128/apps/ai.storyteller.lightcraft.png")),
     accent: Some([0xf2, 0xa5, 0x16]),
-    ..craft_update::suite::LIGHTCRAFT
+    ..craft_update::app::App::new("lightcraft", "LightStudio", "Creative tools", "adotmeagency/lightcraft")
 };
 
 pub mod brush_live;
@@ -629,3 +629,5 @@ pub struct Caches {
     /// What the grid did on its frames (benchmarks and tests check unchanged frames stay cheap).
     pub grid_stats: panels::grid::GridStats,
 }
+
+pub mod brand;

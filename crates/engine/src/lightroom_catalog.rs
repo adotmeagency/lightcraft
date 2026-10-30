@@ -677,7 +677,7 @@ pub(crate) fn refuse_non_media(data: &mut CatalogImport) {
         if !refused.contains(&p.source_id) {
             return true;
         }
-        warnings.push(format!("image {}: not imported; {} isn't one of the file types LightCraft reads", p.source_id, p.path));
+        warnings.push(format!("image {}: not imported; {} isn't one of the file types LightStudio reads", p.source_id, p.path));
         false
     });
     data.warnings.extend(warnings);

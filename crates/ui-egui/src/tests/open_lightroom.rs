@@ -34,7 +34,7 @@ struct Fx {
 fn setup() -> (Headless, Fx) {
     let dir = std::env::temp_dir().join(format!("lc-ui-openlrcat-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
-    let lib = dir.join("LightCraft Library");
+    let lib = dir.join("LightStudio Library");
     let lr = dir.join("Lightroom");
     std::fs::create_dir_all(lr.join("Lightroom Catalog Previews.lrdata")).unwrap();
     std::fs::create_dir_all(lr.join("Lightroom Catalog.lrcat-data")).unwrap();

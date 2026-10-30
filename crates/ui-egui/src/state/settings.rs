@@ -248,7 +248,7 @@ impl Default for AppSettings {
 
 /// The editor name that means PhotoCraft (Photo ▸ Edit In ▸ Edit in PhotoCraft): the host finds
 /// where it is installed.
-pub const PHOTOCRAFT: &str = "PhotoCraft";
+pub const PHOTOCRAFT: &str = "PhotoStudio";
 
 /// The file format Edit In renders the copy as.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]

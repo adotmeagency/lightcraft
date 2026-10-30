@@ -181,7 +181,7 @@ fn main() -> eframe::Result {
         match log_dir().filter(|_| !in_memory) {
             Some(dir) => match logger.attach_dir(&dir) {
                 Ok(path) => {
-                    log::info!("LightCraft {}, log file {}", env!("CARGO_PKG_VERSION"), path.display());
+                    log::info!("LightStudio {}, log file {}", env!("CARGO_PKG_VERSION"), path.display());
                     log_file = Some(path);
                 }
                 // The file sink has given up by now, so this goes to standard error only.
@@ -225,7 +225,7 @@ fn main() -> eframe::Result {
     let opens_as = prefs.as_ref().and_then(|ui| ui.window).and_then(lightcraft_ui_egui::window_place::WindowPlace::checked);
     let options = eframe::NativeOptions {
         renderer,
-        viewport: as_remembered(egui::ViewportBuilder::default().with_title("LightCraft"), opens_as)
+        viewport: as_remembered(egui::ViewportBuilder::default().with_title("LightStudio"), opens_as)
             .with_min_inner_size(lightcraft_ui_egui::window_place::MIN_SIZE)
             .with_drag_and_drop(true)
             .with_fullsize_content_view(true)
@@ -253,7 +253,7 @@ fn main() -> eframe::Result {
     }
     let started = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
         eframe::run_native(
-            "LightCraft",
+            "LightStudio",
             options,
             Box::new(move |cc| {
                 // the window's renderer is up (eframe calls this after creating it)
@@ -267,7 +267,7 @@ fn main() -> eframe::Result {
                 // HDR display: SDR unless the surface, platform and display all allow HDR
                 hdr_display::report(cc.wgpu_render_state.as_ref().map(|r| r.target_format));
                 let mut app = LightcraftApp::new(session, services(cc, app_log_file.as_deref()));
-                app.set_startup_update_check(true);
+                app.set_startup_update_check(false);
                 if let Some(ui) = prefs {
                     app.ui = ui;
                 }
@@ -362,7 +362,7 @@ fn main() -> eframe::Result {
     if let Err(e) = &started {
         // the renderer never came up: start again, which tries the next one in the chain
         if window_gpu::relaunch_after_failure(&win_files) {
-            log::error!("LightCraft could not open its window with {}: {e}; trying the next renderer", window_renderer.name());
+            log::error!("LightStudio could not open its window with {}: {e}; trying the next renderer", window_renderer.name());
             return Ok(());
         }
         startup_failed(&e.to_string(), log_file.as_deref());

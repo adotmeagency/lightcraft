@@ -50,7 +50,7 @@ pub(crate) fn gpu_crash_check_at(marker: Option<std::path::PathBuf>, in_memory: 
 
 pub(crate) fn gpu_crash_notice(what: &str) -> String {
     format!(
-        "LightCraft closed unexpectedly while starting the GPU last time ({what}), so GPU rendering is now off and photos render on the CPU. \
+        "LightStudio closed unexpectedly while starting the GPU last time ({what}), so GPU rendering is now off and photos render on the CPU. \
          To try the GPU again, turn on Settings ▸ Performance ▸ Use the GPU for rendering; to try another graphics backend, start LightCraft with \
          LIGHTCRAFT_GPU_BACKEND=dx12, vulkan or off (see docs/gpu-pipeline.md → Troubleshooting)."
     )
@@ -89,7 +89,7 @@ pub(crate) fn gpu_lost_check_at(marker: Option<&std::path::Path>, in_memory: boo
         let _ = std::fs::remove_file(m);
     }
     Some(format!(
-        "LightCraft stopped last time after the graphics driver reset the GPU ({}) while photos rendered on it, so GPU rendering \
+        "LightStudio stopped last time after the graphics driver reset the GPU ({}) while photos rendered on it, so GPU rendering \
          is now off and photos render on the CPU. To try the GPU again, turn on Settings ▸ Performance ▸ Use the GPU for rendering; \
          an up-to-date graphics driver may help.",
         reason.trim()

@@ -1,0 +1,7 @@
+Adotme branding
+
+All suite variants are deterministic recolors of the same user-supplied Adotme
+mark. Shape, white letter and alpha mask are identical at each output size.
+The original mark remains the property of its owner. The software licenses
+do not grant trademark rights in the Adotme name or mark. Upstream app-icon
+LICENSE.txt applies to upstream artwork only, not the replacement branding.
