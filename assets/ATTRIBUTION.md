@@ -54,3 +54,9 @@ Notes
   [storytold/craft-fonts](https://github.com/storytold/craft-fonts), with their licences and attribution in its
   `ATTRIBUTION.md`, and are embedded only in builds made with the optional `CRAFT_FONTS_DIR` build input (all official
   releases). Never commit font files here; add new fonts to craft-fonts (craftrules `standards/fonts.md`).
+
+| `assets/app-icon/hicolor/128x128/apps/ai.storyteller.lightcraft.png` | Adotme desktop icon override | Adotme; AI-assisted recolor | User-supplied original mark | Reserved branding rights, `assets/app-icon/ADOTME-BRANDING.txt` | 2026-10-30 | Recolor, resize, encode |
+
+| `assets/app-icon/hicolor/256x256/apps/ai.storyteller.lightcraft.png` | Adotme desktop icon override | Adotme; AI-assisted recolor | User-supplied original mark | Reserved branding rights, `assets/app-icon/ADOTME-BRANDING.txt` | 2026-10-30 | Recolor, resize, encode |
+
+| `assets/app-icon/lightcraft.ico` | Adotme desktop icon override | Adotme; AI-assisted recolor | User-supplied original mark | Reserved branding rights, `assets/app-icon/ADOTME-BRANDING.txt` | 2026-10-30 | Recolor, resize, encode |

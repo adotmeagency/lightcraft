@@ -1,3 +1,24 @@
+# Adotme desktop icon overrides
+
+The Windows executable icon (`lightcraft.ico`) and 128/256 px runtime PNGs now
+use the Adotme mark supplied by the owner, recolored light blue.
+The PNGs are transparent and the ICO contains 16, 24, 32, 48, 64, 128 and 256 px sizes.
+Existing source paths are retained, so build scripts and runtime includes use the new files.
+
+Other upstream artwork, including SVG sources, macOS assets and other Linux sizes,
+is unchanged. Running the upstream icon regeneration script will overwrite these
+overrides. See ADOTME-BRANDING.txt for the branding terms.
+
+On Windows, close the app and rebuild from the repository root:
+
+```powershell
+cargo run --release --locked -p lightcraft
+```
+
+Windows may cache an old shortcut icon; recreate the shortcut if necessary.
+
+## Upstream documentation
+
 # LightCraft app icon
 
 A **lynx**, frontal head-and-shoulders portrait with an alert gaze, in the style of an engraving: the
