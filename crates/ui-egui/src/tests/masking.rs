@@ -1181,13 +1181,13 @@ fn edit_in_external_editor_opens_the_copy() {
     };
     let app = LightcraftApp::new(lightcraft_engine::Session::with_demo().with_fs(), services);
     let mut h = Headless::new(app, [1200.0, 800.0], 1.0);
-    h.app.ui.settings.external_editor = "PhotoCraft".into();
+    h.app.ui.settings.external_editor = "PhotoStudio".into();
     let r = h.request("engine.execute", json!({"command": "photo.editInExternal", "params": {"dir": dir.to_string_lossy()}}), T);
     assert_eq!(r["ok"], true, "{r}");
     let calls = opened.lock().unwrap().clone();
     assert_eq!(calls.len(), 1);
     assert!(calls[0].0.ends_with("-Edit.tif") && std::path::Path::new(&calls[0].0).exists(), "{calls:?}");
-    assert_eq!(calls[0].1, "PhotoCraft");
+    assert_eq!(calls[0].1, "PhotoStudio");
     let _ = std::fs::remove_dir_all(&dir);
     h.settle(SETTLE);
 }
@@ -1203,7 +1203,7 @@ fn edit_in_reports_an_editor_that_wont_open_without_failing() {
     let services = Services { png: None, open_with: Some(Box::new(|_: &str, _: &str| Err("the editor quit".into()))), ..Default::default() };
     let app = LightcraftApp::new(lightcraft_engine::Session::with_demo().with_fs(), services);
     let mut h = Headless::new(app, [1200.0, 800.0], 1.0);
-    h.app.ui.settings.external_editor = "PhotoCraft".into();
+    h.app.ui.settings.external_editor = "PhotoStudio".into();
     let n = h.app.session.catalog.len();
     let r = h.request("engine.execute", json!({"command": "photo.editInExternal", "params": {"dir": dir.to_string_lossy()}}), T);
     assert_eq!(r["ok"], true, "{r}");
@@ -1233,7 +1233,7 @@ fn edit_in_photocraft_opens_a_psd_copy() {
         })),
         check_editor: Some(Box::new(move |app: &str| {
             if app == crate::state::PHOTOCRAFT && !i.load(std::sync::atomic::Ordering::SeqCst) {
-                Err("PhotoCraft isn't installed".into())
+                Err("PhotoStudio isn't installed".into())
             } else {
                 Ok(())
             }
@@ -1243,15 +1243,15 @@ fn edit_in_photocraft_opens_a_psd_copy() {
     let app = LightcraftApp::new(lightcraft_engine::Session::with_demo().with_fs(), services);
     let mut h = Headless::new(app, [1200.0, 800.0], 1.0);
     let n = h.app.session.catalog.len();
-    let params = json!({"command": "photo.editInPhotoCraft", "params": {"dir": dir.to_string_lossy()}});
+    let params = json!({"command": "photo.editInPhotoStudio", "params": {"dir": dir.to_string_lossy()}});
     let r = h.request("engine.execute", params.clone(), T);
     assert_eq!(r["ok"], false, "{r}");
-    assert_eq!((h.app.session.catalog.len(), opened.lock().unwrap().len()), (n, 0), "no copy without PhotoCraft");
+    assert_eq!((h.app.session.catalog.len(), opened.lock().unwrap().len()), (n, 0), "no copy without PhotoStudio");
     // and it says so, however it was asked for (menu, shortcut, context menu)
     let toast = h.app.ui.toast.as_ref().map(|t| t.0.clone()).unwrap_or_default();
     assert!(!toast.is_empty(), "the missing editor is reported");
     h.app.ui.toast = None;
-    let r = h.app.run("photo.editInPhotoCraft", json!({}));
+    let r = h.app.run("photo.editInPhotoStudio", json!({}));
     assert!(r.is_err() && h.app.ui.toast.is_some(), "{r:?} {:?}", h.app.ui.toast);
     installed.store(true, std::sync::atomic::Ordering::SeqCst);
     let r = h.request("engine.execute", params, T);
@@ -1259,18 +1259,18 @@ fn edit_in_photocraft_opens_a_psd_copy() {
     let calls = opened.lock().unwrap().clone();
     assert_eq!(calls.len(), 1);
     assert!(calls[0].0.ends_with("-Edit.psd") && std::path::Path::new(&calls[0].0).exists(), "{calls:?}");
-    assert_eq!(calls[0].1, "PhotoCraft");
+    assert_eq!(calls[0].1, "PhotoStudio");
     let d = lightcraft_codecs::decode(&std::fs::read(&calls[0].0).unwrap(), Default::default()).unwrap();
     assert_eq!(d.bit_depth, 16, "16-bit by default");
     // a portable copy: its path is what the host is given; the file follows the settings
     h.app.ui.settings.photocraft_path = "/opt/pc/photocraft".into();
     h.app.ui.settings.photocraft_file.format = crate::state::EditFormat::Tiff;
     h.app.ui.settings.photocraft_file.bit_depth = 8;
-    let r = h.request("engine.execute", json!({"command": "photo.editInPhotoCraft", "params": {"dir": dir.to_string_lossy()}}), T);
+    let r = h.request("engine.execute", json!({"command": "photo.editInPhotoStudio", "params": {"dir": dir.to_string_lossy()}}), T);
     assert_eq!(r["ok"], true, "{r}");
     let last = opened.lock().unwrap().last().cloned().unwrap();
     assert!(last.0.ends_with(".tif") && last.1 == "/opt/pc/photocraft", "{last:?}");
-    assert!(crate::menus::ui_enabled(&h.app, "photo.editInPhotoCraft"));
+    assert!(crate::menus::ui_enabled(&h.app, "photo.editInPhotoStudio"));
     let _ = std::fs::remove_dir_all(&dir);
     h.settle(SETTLE);
 }
@@ -1403,7 +1403,7 @@ fn open_original_refuses_anything_that_is_not_a_photo_file() {
     for (id, name) in bad.iter().zip(programs) {
         let r = h.request("engine.execute", json!({"command": "photo.openOriginalInExternal", "params": {"ids": [id.0]}}), T);
         assert_eq!(r["ok"], false, "{name} was opened: {r}");
-        assert!(r.to_string().contains("file types LightCraft reads"), "{name}: {r}");
+        assert!(r.to_string().contains("file types LightStudio reads"), "{name}: {r}");
         // the menu item is greyed out for such a record, so it is never offered either
         exec(&mut h, "library.select", json!({"ids": [id.0]}));
         assert!(!crate::menus::ui_enabled(&h.app, "photo.openOriginalInExternal"), "{name} is offered in the menu");

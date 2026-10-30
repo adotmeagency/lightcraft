@@ -84,7 +84,7 @@ pub(crate) fn panic_log_path_with(env: impl Fn(&str) -> Option<std::ffi::OsStrin
 pub(crate) fn stopped_text(error: &str, lost: Option<&str>) -> String {
     match lost {
         Some(reason) => format!(
-            "{error}. The graphics driver reset the GPU ({reason}). LightCraft renders on the CPU from its next start; \
+            "{error}. The graphics driver reset the GPU ({reason}). LightStudio renders on the CPU from its next start; \
              Settings ▸ Performance ▸ Use the GPU for rendering turns the GPU back on"
         ),
         None => error.to_string(),
@@ -94,7 +94,7 @@ pub(crate) fn stopped_text(error: &str, lost: Option<&str>) -> String {
 /// LightCraft stopped while its window was up: say so in the log and in a native message box
 /// naming the log file (as [`startup_failed`] does for a start that failed).
 pub(crate) fn stopped_while_running(text: &str, log_file: Option<&std::path::Path>) {
-    log::error!("LightCraft stopped: {text}");
+    log::error!("LightStudio stopped: {text}");
     if std::env::var_os("LIGHTCRAFT_NO_PREFS").is_some() {
         return; // tests and scripts: no dialog to click away
     }
@@ -111,7 +111,7 @@ pub(crate) fn stopped_while_running(text: &str, log_file: Option<&std::path::Pat
 /// message box naming the log file, instead of exiting without a trace — the release builds have
 /// no console on Windows, and an app started from Finder shows no standard error (issue #260).
 pub(crate) fn startup_failed(error: &str, log_file: Option<&std::path::Path>) {
-    log::error!("LightCraft could not open its window: {error}");
+    log::error!("LightStudio could not open its window: {error}");
     if std::env::var_os("LIGHTCRAFT_NO_PREFS").is_some() {
         return; // tests and scripts: no dialog to click away
     }

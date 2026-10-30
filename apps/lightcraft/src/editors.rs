@@ -120,7 +120,7 @@ fn launcher(app: &str) -> Result<Launcher, String> {
         return Ok(if cfg!(target_os = "macos") { Launcher::MacApp(app.to_string()) } else { Launcher::Program(PathBuf::from(app)) });
     }
     find_photocraft().ok_or_else(|| {
-        "PhotoCraft isn't installed. Get it from getartcraft.com/apps/photocraft, or give where it is in Settings ▸ External Editing.".to_string()
+        "PhotoStudio isn't installed. Get it from getartcraft.com/apps/photocraft, or give where it is in Settings ▸ External Editing.".to_string()
     })
 }
 
@@ -128,17 +128,17 @@ fn find_photocraft() -> Option<Launcher> {
     let env = |k: &str| std::env::var_os(k).map(|v| v.to_string_lossy().to_string());
     if cfg!(target_os = "macos") {
         // the usual places, then wherever Spotlight knows it (by bundle id or bundle name)
-        let home = env("HOME").map(|h| Path::new(&h).join("Applications/PhotoCraft.app"));
-        let usual = [Some(PathBuf::from("/Applications/PhotoCraft.app")), home].into_iter().flatten().find(|p| p.is_dir());
+        let home = env("HOME").map(|h| Path::new(&h).join("Applications/PhotoStudio.app"));
+        let usual = [Some(PathBuf::from("/Applications/PhotoStudio.app")), home].into_iter().flatten().find(|p| p.is_dir());
         let spotlight = || {
-            let query = format!("kMDItemCFBundleIdentifier == '{PHOTOCRAFT_ID}' || kMDItemFSName == 'PhotoCraft.app'");
+            let query = format!("kMDItemCFBundleIdentifier == '{PHOTOCRAFT_ID}' || kMDItemFSName == 'PhotoStudio.app'");
             let out = Command::new("mdfind").arg(query).output().ok().filter(|o| o.status.success())?;
             mdfind_app(&String::from_utf8_lossy(&out.stdout))
         };
         return usual.or_else(spotlight).map(|p| Launcher::MacApp(p.to_string_lossy().to_string()));
     }
     if cfg!(target_os = "windows") {
-        let install_dir = reg_query(r"HKLM\Software\PhotoCraft", Some("InstallDir"));
+        let install_dir = reg_query(r"HKLM\Software\PhotoStudio", Some("InstallDir"));
         let app_path = reg_query(r"HKLM\Software\Microsoft\Windows\CurrentVersion\App Paths\photocraft.exe", None);
         return windows_candidates(install_dir, app_path, env).into_iter().find(|p| p.is_file()).map(Launcher::Program);
     }
@@ -185,9 +185,9 @@ fn windows_candidates(install_dir: Option<String>, app_path: Option<String>, env
     out.extend(install_dir.map(|d| Path::new(&d).join("photocraft.exe")));
     out.extend(app_path.map(|p| PathBuf::from(p.trim_matches('"'))));
     for var in ["ProgramW6432", "ProgramFiles"] {
-        out.extend(env(var).map(|d| Path::new(&d).join("PhotoCraft").join("photocraft.exe")));
+        out.extend(env(var).map(|d| Path::new(&d).join("PhotoStudio").join("photocraft.exe")));
     }
-    out.extend(env("LOCALAPPDATA").map(|d| Path::new(&d).join("Programs").join("PhotoCraft").join("photocraft.exe")));
+    out.extend(env("LOCALAPPDATA").map(|d| Path::new(&d).join("Programs").join("PhotoStudio").join("photocraft.exe")));
     out
 }
 
@@ -317,10 +317,10 @@ mod tests {
             "LOCALAPPDATA" => Some(r"C:\Users\Simon\AppData\Local".to_string()),
             _ => None,
         };
-        let c = windows_candidates(Some(r"D:\Apps\PhotoCraft\".into()), Some(r#""C:\Program Files\PhotoCraft\photocraft.exe""#.into()), env);
+        let c = windows_candidates(Some(r"D:\Apps\PhotoStudio\".into()), Some(r#""C:\Program Files\PhotoStudio\photocraft.exe""#.into()), env);
         let c: Vec<String> = c.iter().map(|p| p.to_string_lossy().replace('/', "\\")).collect();
-        assert!(c[0].starts_with(r"D:\Apps\PhotoCraft") && c[0].ends_with("photocraft.exe"), "{c:?}");
-        assert_eq!(c[1], r"C:\Program Files\PhotoCraft\photocraft.exe", "App Paths, quotes dropped");
+        assert!(c[0].starts_with(r"D:\Apps\PhotoStudio") && c[0].ends_with("photocraft.exe"), "{c:?}");
+        assert_eq!(c[1], r"C:\Program Files\PhotoStudio\photocraft.exe", "App Paths, quotes dropped");
         assert!(c[2].starts_with(r"C:\Program Files") && c[2].ends_with("photocraft.exe"), "{c:?}");
         assert!(c[3].contains("Programs") && c[3].ends_with("photocraft.exe"), "{c:?}");
         assert_eq!(c.len(), 4);
@@ -328,16 +328,16 @@ mod tests {
 
     #[test]
     fn reg_query_output_is_read() {
-        let out = "\r\nHKEY_LOCAL_MACHINE\\Software\\PhotoCraft\r\n    InstallDir    REG_SZ    C:\\Program Files\\PhotoCraft\\\r\n\r\n";
-        assert_eq!(reg_value(out).as_deref(), Some(r"C:\Program Files\PhotoCraft\"));
-        let default = "\r\nHKEY_LOCAL_MACHINE\\...\\photocraft.exe\r\n    (Default)    REG_SZ    C:\\Program Files\\PhotoCraft\\photocraft.exe\r\n";
-        assert_eq!(reg_value(default).as_deref(), Some(r"C:\Program Files\PhotoCraft\photocraft.exe"));
+        let out = "\r\nHKEY_LOCAL_MACHINE\\Software\\PhotoStudio\r\n    InstallDir    REG_SZ    C:\\Program Files\\PhotoStudio\\\r\n\r\n";
+        assert_eq!(reg_value(out).as_deref(), Some(r"C:\Program Files\PhotoStudio\"));
+        let default = "\r\nHKEY_LOCAL_MACHINE\\...\\photocraft.exe\r\n    (Default)    REG_SZ    C:\\Program Files\\PhotoStudio\\photocraft.exe\r\n";
+        assert_eq!(reg_value(default).as_deref(), Some(r"C:\Program Files\PhotoStudio\photocraft.exe"));
         assert_eq!(reg_value("ERROR: The system was unable to find the specified registry key or value."), None);
     }
 
     #[test]
     fn desktop_entries_give_their_program() {
-        let appimage = "[Desktop Entry]\nName=PhotoCraft\nExec=\"/home/simon/Apps/photocraft-1.2-linux-x86_64.AppImage\" %F\n";
+        let appimage = "[Desktop Entry]\nName=PhotoStudio\nExec=\"/home/simon/Apps/photocraft-1.2-linux-x86_64.AppImage\" %F\n";
         assert_eq!(desktop_exec(appimage), Some(PathBuf::from("/home/simon/Apps/photocraft-1.2-linux-x86_64.AppImage")));
         assert_eq!(desktop_exec("Exec=/opt/photocraft/photocraft %F\n"), Some(PathBuf::from("/opt/photocraft/photocraft")));
         assert_eq!(desktop_exec("Exec=photocraft %F\nTryExec=photocraft\n"), Some(PathBuf::from("photocraft")), "a bare name, for a PATH lookup");

@@ -391,7 +391,7 @@ fn decode_ifd(bytes: &[u8], tiff: &Tiff, pixels: &Ifd, main: &Ifd, mode: Mode, f
         // (LightCraft's own DNGs from before the writer followed the spec carry the sensor-origin pattern; they are marked by
         // a bare "LightCraft" Software tag, the writer now says [`crate::dngwrite::SOFTWARE`], and keep their original reading)
         let at_origin = Cfa { width: cols, height: rows, pattern };
-        let legacy_writer = [raw, ifd0].iter().any(|i| i.string(t::SOFTWARE).as_deref().map(str::trim) == Some("LightCraft"));
+        let legacy_writer = [raw, ifd0].iter().any(|i| i.string(t::SOFTWARE).as_deref().map(str::trim) == Some("LightStudio"));
         Some(if legacy_writer { at_origin } else { at_origin.shifted(cols - active_area.x % cols, rows - active_area.y % rows) })
     } else {
         None

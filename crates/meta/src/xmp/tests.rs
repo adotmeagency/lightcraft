@@ -9,7 +9,7 @@ fn full() -> Metadata {
         make: Some("Maker & Sons".into()),
         model: Some("X <1>".into()),
         serial_number: Some("SN1".into()),
-        software: Some("LightCraft".into()),
+        software: Some("LightStudio".into()),
         lens_make: Some("L".into()),
         lens_model: Some("24-70mm".into()),
         lens_serial_number: Some("LS".into()),

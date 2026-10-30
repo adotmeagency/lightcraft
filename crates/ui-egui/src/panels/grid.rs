@@ -1275,10 +1275,10 @@ fn context_menu_open_and_edit(app: &mut LightcraftApp, ui: &mut egui::Ui, id: Ph
     }
     // Photo ▸ Edit In: a copy with this photo's edits, opened in PhotoCraft or another editor
     // (desktop only: the web can't start programs)
-    ui.add_enabled_ui(crate::menus::ui_enabled(app, "photo.editInPhotoCraft"), |ui| {
+    ui.add_enabled_ui(crate::menus::ui_enabled(app, "photo.editInPhotoStudio"), |ui| {
         crate::widgets::menu_button(ui, crate::i18n::tr("Edit In"), |ui| {
-            if ui.button(crate::i18n::tr("Edit in PhotoCraft")).clicked() {
-                let _ = app.run("photo.editInPhotoCraft", json!({}));
+            if ui.button(crate::i18n::tr("Edit in PhotoStudio")).clicked() {
+                let _ = app.run("photo.editInPhotoStudio", json!({}));
             }
             if ui.button(crate::i18n::tr("Edit in Other Editor")).clicked() {
                 let _ = app.run("photo.editInExternal", json!({}));

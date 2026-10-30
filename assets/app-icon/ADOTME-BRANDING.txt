@@ -1,10 +1,7 @@
 Adotme branding
 
-The Adotme name and logo are user-supplied brand assets. These recolored versions
-were prepared with OpenAI image generation for use in the Adotme creative suite.
-All rights in the original mark remain with its owner. No trademark rights or
-permission to represent an unrelated product as Adotme are granted by the
-repository software license. The existing app-icon/LICENSE.txt covers only the
-original upstream artwork and its derivatives, not these replacement assets.
-
-Files: hicolor/128x128/apps/ai.storyteller.lightcraft.png, hicolor/256x256/apps/ai.storyteller.lightcraft.png, lightcraft.ico
+All suite variants are deterministic recolors of the same user-supplied Adotme
+mark. Shape, white letter and alpha mask are identical at each output size.
+The original mark remains the property of its owner. The software licenses
+do not grant trademark rights in the Adotme name or mark. Upstream app-icon
+LICENSE.txt applies to upstream artwork only, not the replacement branding.

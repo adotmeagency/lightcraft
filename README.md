@@ -1,5 +1,11 @@
+# LightStudio — Adotme creative suite
+
+This fork provides Adotme branding and desktop customization.
+See [desktop notes](docs/adotme-desktop.md) for build and compatibility details.
+Original software licenses, copyright notices and contributor credits are retained.
+
 <p align="center">
-  <a href="https://getartcraft.com/">
+  <a href="https://adotme.co/">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="docs/brand/artcraft-logo-white.svg">
       <img alt="ArtCraft" src="docs/brand/artcraft-logo.svg" width="200">
@@ -9,10 +15,10 @@
 
 
 <p align="center">
-  <img src="assets/app-icon/hicolor/256x256/apps/ai.storyteller.lightcraft.png" width="128" height="128" alt="LightCraft icon: an engraved lynx on an amber tile">
+  <img src="assets/app-icon/hicolor/256x256/apps/ai.storyteller.lightcraft.png" width="128" height="128" alt="LightStudio icon: an engraved lynx on an amber tile">
 </p>
 
-<h1 align="center">LightCraft</h1>
+<h1 align="center">LightStudio</h1>
 
 <h3 align="center">Your photos. Your pixels. Your machine.</h3>
 
@@ -39,26 +45,26 @@
 </p>
 
 <p align="center">
-  <a href="https://discord.gg/artcraft"><img alt="Join the ArtCraft community on Discord" src="https://img.shields.io/badge/Join%20us%20on%20Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" height="40"></a>
+  <a href="https://adotme.co"><img alt="Join the ArtCraft community on Discord" src="https://img.shields.io/badge/Join%20us%20on%20Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" height="40"></a>
 </p>
 
 <p align="center">
-  <a href="https://getartcraft.com/apps/lightcraft"><b>LightCraft on getartcraft.com</b></a> ·
-  <a href="https://getartcraft.com/">ArtCraft</a> ·
-  <a href="https://getartcraft.com/apps">All Crafting Apps</a>
+  <a href="https://adotme.co"><b>LightStudio on getartcraft.com</b></a> ·
+  <a href="https://adotme.co/">ArtCraft</a> ·
+  <a href="https://adotme.co/apps">All Crafting Apps</a>
 </p>
 
 <br>
 
 <p align="center">
-  <img src="docs/images/hero-tetons.jpg" alt="LightCraft's Edit view with Ansel Adams' The Tetons and the Snake River in the loupe, the Light and Effects panels open on the right, and the four showcase photos in the filmstrip" width="100%">
+  <img src="docs/images/hero-tetons.jpg" alt="LightStudio's Edit view with Ansel Adams' The Tetons and the Snake River in the loupe, the Light and Effects panels open on the right, and the four showcase photos in the filmstrip" width="100%">
   <br>
-  <sub><i>Ansel Adams, "The Tetons and the Snake River" (1942). Public domain, U.S. National Archives. Developed in LightCraft.</i></sub>
+  <sub><i>Ansel Adams, "The Tetons and the Snake River" (1942). Public domain, U.S. National Archives. Developed in LightStudio.</i></sub>
 </p>
 
 > [!NOTE]
 > **ArtCraft is a community of artists from all walks of life.** Digital, generative, music,
-> games &mdash; if you make things, you're one of us. **[Come say hi on Discord](https://discord.gg/artcraft).**
+> games &mdash; if you make things, you're one of us. **[Come say hi on Discord](https://adotme.co).**
 
 <p align="center">
   <a href="#edit-like-you-mean-it">Editing</a> ·
@@ -80,7 +86,7 @@
 
 ## Edit like you mean it
 
-LightCraft is a complete darkroom in a single native app. Every adjustment is **non-destructive**, so your originals
+LightStudio is a complete darkroom in a single native app. Every adjustment is **non-destructive**, so your originals
 are never touched. Every slider renders through a **scene-referred, wide-gamut, 32-bit float pipeline**: highlights
 roll off like film, shadows open up without halos, and colour stays clean from capture to export.
 
@@ -138,7 +144,7 @@ Split-tone shadows, midtones and highlights independently with drag-anywhere col
 ## Before & after
 
 Press <kbd>\\</kbd> to toggle the Before view, <kbd>Y</kbd> for side by side, or <kbd>Shift</kbd>+<kbd>Y</kbd> for a
-split view. Every image below is a real screenshot of LightCraft, captured automatically by an agent through the
+split view. Every image below is a real screenshot of LightStudio, captured automatically by an agent through the
 [control channel](#built-for-agents).
 
 <table>
@@ -169,7 +175,7 @@ classical heuristics. Existing model-generated masks render and export without t
 <p align="center">
   <img src="docs/images/masking.jpg" alt="Masking panel with a linear Sky mask and a radial Sun glow mask; the radial gradient is drawn as a red overlay around the sun on a lake scene" width="100%">
   <br>
-  <sub>A radial "Sun glow" mask (Temp +40, Exposure +0.50) layered over a linear "Sky" mask. <i>Photo from LightCraft's procedurally generated demo library.</i></sub>
+  <sub>A radial "Sun glow" mask (Temp +40, Exposure +0.50) layered over a linear "Sky" mask. <i>Photo from LightStudio's procedurally generated demo library.</i></sub>
 </p>
 
 <br>
@@ -240,7 +246,7 @@ bundled. See [face models and setup](docs/faces.md).
 
 ## Built for agents
 
-Every menu item, slider, brush stroke, crop handle and keystroke in LightCraft is a **command** with a stable id and
+Every menu item, slider, brush stroke, crop handle and keystroke in LightStudio is a **command** with a stable id and
 JSON parameters. The UI, the keyboard, the CLI, a JSON-lines control channel and an **MCP server** all dispatch
 through the same entry point. An agent can cull a shoot, develop it, mask a sky and export it, and *see* the result.
 
@@ -317,7 +323,7 @@ lightcraft --control 7980 ~/Pictures/trip
 - **Pure Rust, no C.** Our own RAW decoders (DNG, Canon CR2/CR3, Sony ARW, Nikon NEF, Fujifilm RAF incl. X-Trans,
   Panasonic RW2 / Leica RWL, Pentax PEF, Olympus ORF), our own colour science, our own pipeline. JPEG, PNG, TIFF, WebP,
   PSD composites, JPEG XL, GIF (first frame) and BMP open today; HEIC/HEIF photos too with `--features heif` (HEVC is a build-time choice,
-  as in PhotoCraft).
+  as in PhotoStudio).
 - **Scene-referred & wide-gamut.** Linear Rec.2020 float internally, Bradford-adapted white balance, gamut mapping
   instead of clipping, a filmic shoulder for raw and pixel-exact pass-through for JPEGs you haven't touched.
 - **Resolution-independent edits.** Radii and brush sizes are relative to the image, so a 400 px preview, your
@@ -339,7 +345,7 @@ lightcraft --control 7980 ~/Pictures/trip
 
 ## Feature status
 
-LightCraft is young and moving fast: **alpha**. **Where we honestly stand** (details in the [roadmap](ROADMAP.md) and
+LightStudio is young and moving fast: **alpha**. **Where we honestly stand** (details in the [roadmap](ROADMAP.md) and
 [docs/target-app-parity.md](docs/target-app-parity.md)):
 
 - **By feature count we're at ~82%** (core features 98%), tracked row by row in
@@ -398,7 +404,7 @@ Workspace builds, including the desktop, web and CLI applications, require Rust 
 
 ```sh
 git clone https://github.com/storytold/lightcraft && cd lightcraft
-cargo run --release -p lightcraft                       # opens your library (~/Pictures/LightCraft Library; a new one starts with demo photos)
+cargo run --release -p lightcraft                       # opens your library (~/Pictures/LightStudio Library; a new one starts with demo photos)
 cargo run --release -p lightcraft -- ~/Pictures/trip    # import your photos (folders are scanned, duplicates skipped)
 cargo run --release -p lightcraft -- --memory           # a throwaway in-memory demo session (writes nothing)
 cargo run --release -p lightcraft -- --control 7980     # with the automation channel
@@ -465,7 +471,7 @@ git clone https://github.com/storytold/craft-fonts ../craft-fonts
 CRAFT_FONTS_DIR=../craft-fonts cargo run --release -p lightcraft
 ```
 
-Without it LightCraft builds and runs the same, but Chinese and Japanese text have no glyphs. Fonts are never committed to this
+Without it LightStudio builds and runs the same, but Chinese and Japanese text have no glyphs. Fonts are never committed to this
 repo — the standard for what goes there lives with it: see the [craft-fonts README](https://github.com/storytold/craft-fonts#readme).
 
 **Interface language:** **Edit → Language** (English, 简体中文, 繁體中文（台灣）, 日本語, Português (Brasil), Español, Deutsch, Русский, Français, Українська, Polski, Čeština, Italiano, ქართული, Svenska, Suomi, Bahasa Indonesia, Tiếng Việt) or **Settings → General →
@@ -473,15 +479,15 @@ Language**; the choice applies immediately and persists. See [docs/localization.
 
 **Logs:** the desktop app writes its log to standard error and to `logs/lightcraft.log` in its settings folder
 (Linux `$XDG_CONFIG_HOME/lightcraft/logs/`, by default `~/.config/lightcraft/logs/`; macOS
-`~/Library/Application Support/LightCraft/logs/`; Windows `%APPDATA%\LightCraft\logs\`), never in the library.
-**Portable mode:** a file named `portable.txt` (or `LightCraft.portable`) next to the executable moves the settings
-folder to `LightCraftData` beside it. A
+`~/Library/Application Support/LightStudio/logs/`; Windows `%APPDATA%\LightStudio\logs\`), never in the library.
+**Portable mode:** a file named `portable.txt` (or `LightStudio.portable`) next to the executable moves the settings
+folder to `LightStudioData` beside it. A
 launch from a desktop menu or the Dock has no terminal, so attach this file to a bug report (**Help ▸ Open Log
 Folder** shows it in the file manager). Each start moves the
 previous log to `lightcraft.1.log` and that one to `lightcraft.2.log`, so the log of a run that crashed survives the
 next start; the file stops growing at 16 MiB, `--version` and `--help` write none, and runs with
-`LIGHTCRAFT_NO_PREFS` log to standard error only. By default LightCraft's own crates log at `info` and everything else
-at `warn`. `LIGHTCRAFT_LOG=info` or `debug` works as before (that level for LightCraft's own crates, warnings and
+`LIGHTCRAFT_NO_PREFS` log to standard error only. By default LightStudio's own crates log at `info` and everything else
+at `warn`. `LIGHTCRAFT_LOG=info` or `debug` works as before (that level for LightStudio's own crates, warnings and
 errors from the rest; any other value: warnings and errors only) and wins over `RUST_LOG`, which otherwise replaces
 the default with env_logger-style directives such as `RUST_LOG=debug` or `RUST_LOG=warn,lightcraft_pipeline=trace` (a
 directive ending in `*` covers every target starting with it, as in `lightcraft*=debug`). Panics are recorded there
@@ -507,7 +513,7 @@ In a flake configuration (NixOS, home-manager, nix-darwin):
 ```nix
 # flake.nix
 inputs.lightcraft.url = "github:storytold/lightcraft";
-# optional: build against your own nixpkgs instead of the one LightCraft pins
+# optional: build against your own nixpkgs instead of the one LightStudio pins
 # inputs.lightcraft.inputs.nixpkgs.follows = "nixpkgs";
 
 # then, in a NixOS or home-manager module (where `inputs` is in scope):
@@ -545,13 +551,13 @@ Humans and agents follow the same rules, so read [AGENTS.md](AGENTS.md) first. T
   `unsafe`, checked indexing on anything derived from input, and a regression test with every crash fix. Details in
   [AGENTS.md](AGENTS.md#never-crash-outranks-feature-work).
 
-Questions, ideas or a bug you'd like to talk through first? Bring them to [Discord](https://discord.gg/artcraft).
+Questions, ideas or a bug you'd like to talk through first? Bring them to [Discord](https://adotme.co).
 
 <br>
 
 ## Downloads
 
-**New to LightCraft?** Download it from the [LightCraft page on getartcraft.com](https://getartcraft.com/apps/lightcraft). That's the easiest way to install it.
+**New to LightStudio?** Download it from the [LightStudio page on getartcraft.com](https://adotme.co). That's the easiest way to install it.
 
 **Want a specific build or format?** On GitHub, the [latest release](https://github.com/storytold/lightcraft/releases/latest) has every build listed below, and [all releases](https://github.com/storytold/lightcraft/releases) has earlier versions and their notes. `<ver>` in the file names is the version number, and `SHA256SUMS.txt` lists a checksum for every file.
 
@@ -564,9 +570,9 @@ Questions, ideas or a bug you'd like to talk through first? Bring them to [Disco
 | x86 (32-bit) | `lightcraft-<ver>-windows-x86.msi` | `lightcraft-<ver>-windows-x86-portable.zip` |
 
 Installers and executables are code-signed. The installer asks who to install for and where (for your account only, in
-`%LOCALAPPDATA%\Programs\ArtCraft\LightCraft`, by default; "Everyone on this computer" uses
-`C:\Program Files\ArtCraft\LightCraft` (`Program Files (x86)` for the 32-bit build); upgrades stay in the folder you chose) and ends on a page confirming LightCraft was installed, with an
-option to start it. For unattended installs: `msiexec /i lightcraft-<ver>-windows-x64.msi /qn INSTALLFOLDER="D:\Apps\LightCraft\"`.
+`%LOCALAPPDATA%\Programs\ArtCraft\LightStudio`, by default; "Everyone on this computer" uses
+`C:\Program Files\ArtCraft\LightStudio` (`Program Files (x86)` for the 32-bit build); upgrades stay in the folder you chose) and ends on a page confirming LightStudio was installed, with an
+option to start it. For unattended installs: `msiexec /i lightcraft-<ver>-windows-x64.msi /qn INSTALLFOLDER="D:\Apps\LightStudio\"`.
 A silent install is per-user by default. `INSTALLFOLDER` chooses the folder, not who it is installed for;
 add `ALLUSERS=1`, from an elevated terminal or deployment tool, for an all-users install.
 
@@ -597,7 +603,7 @@ fail. Error 1603 has other causes too; if this doesn't help, open an issue with 
 
 RISC-V (riscv64): `lightcraft-<ver>-linux-riscv64.tar.gz`, a tarball only (glibc 2.39 or newer, e.g. Ubuntu 24.04+).
 
-On a Wayland desktop LightCraft runs through XWayland when it is available, because only X11 gives
+On a Wayland desktop LightStudio runs through XWayland when it is available, because only X11 gives
 windows file drag-and-drop; set `LIGHTCRAFT_WAYLAND=1` to use native Wayland (sharper fractional scaling, no drop).
 
 ### FreeBSD
@@ -616,26 +622,26 @@ windows file drag-and-drop; set `LIGHTCRAFT_WAYLAND=1` to use native Wayland (sh
 
 ## The Crafting Apps
 
-LightCraft is one of the **Crafting Apps**: free, open-source creative tools from the
-[ArtCraft](https://getartcraft.com/) team, each written from scratch in Rust and each able to
+LightStudio is one of the **Crafting Apps**: free, open-source creative tools from the
+[ArtCraft](https://adotme.co/) team, each written from scratch in Rust and each able to
 stand on its own.
 
 | | App | What it's for | Code | Learn more |
 |:-:|---|---|---|---|
-| <img src="https://raw.githubusercontent.com/storytold/photocraft/main/assets/app-icon/hicolor/64x64/apps/ai.storyteller.photocraft.png" alt="" width="32" height="32"> | **PhotoCraft** | Image editing: layers, masks, type and real PSD files | [GitHub](https://github.com/storytold/photocraft) | [Website](https://getartcraft.com/apps/photocraft) |
-| <img src="https://raw.githubusercontent.com/storytold/vectorcraft/main/assets/app-icon/hicolor/64x64/apps/ai.storyteller.vectorcraft.png" alt="" width="32" height="32"> | **VectorCraft** | Vector illustration | [GitHub](https://github.com/storytold/vectorcraft) | [Website](https://getartcraft.com/apps/vectorcraft) |
-| <img src="https://raw.githubusercontent.com/storytold/filmcraft/main/assets/app-icon/hicolor/64x64/apps/ai.storyteller.filmcraft.png" alt="" width="32" height="32"> | **FilmCraft** | Video editing, color and sound | [GitHub](https://github.com/storytold/filmcraft) | [Website](https://getartcraft.com/apps/filmcraft) |
-| <img src="https://raw.githubusercontent.com/storytold/lightcraft/main/assets/app-icon/hicolor/64x64/apps/ai.storyteller.lightcraft.png" alt="" width="32" height="32"> | **LightCraft** | **Photo library and raw development · you are here** | [GitHub](https://github.com/storytold/lightcraft) | [Website](https://getartcraft.com/apps/lightcraft) |
-| <img src="https://raw.githubusercontent.com/storytold/pdfcraft/main/assets/app-icon/hicolor/64x64/apps/ai.storyteller.pdfcraft.png" alt="" width="32" height="32"> | **PdfCraft** | Reading, organizing and protecting PDFs | [GitHub](https://github.com/storytold/pdfcraft) | [Website](https://getartcraft.com/apps/pdfcraft) |
-| <img src="https://raw.githubusercontent.com/storytold/effectcraft/main/assets/app-icon/hicolor/64x64/apps/ai.storyteller.effectcraft.png" alt="" width="32" height="32"> | **EffectCraft** | Motion graphics and visual effects | [GitHub](https://github.com/storytold/effectcraft) | [Website](https://getartcraft.com/apps/effectcraft) |
-| <img src="https://raw.githubusercontent.com/storytold/designcraft/main/assets/app-icon/hicolor/64x64/apps/ai.storyteller.designcraft.png" alt="" width="32" height="32"> | **DesignCraft** | Page layout and publishing | [GitHub](https://github.com/storytold/designcraft) | [Website](https://getartcraft.com/apps/designcraft) |
+| <img src="https://raw.githubusercontent.com/storytold/photocraft/main/assets/app-icon/hicolor/64x64/apps/ai.storyteller.photocraft.png" alt="" width="32" height="32"> | **PhotoStudio** | Image editing: layers, masks, type and real PSD files | [GitHub](https://github.com/storytold/photocraft) | [Website](https://adotme.co/apps/photocraft) |
+| <img src="https://raw.githubusercontent.com/storytold/vectorcraft/main/assets/app-icon/hicolor/64x64/apps/ai.storyteller.vectorcraft.png" alt="" width="32" height="32"> | **VectorStudio** | Vector illustration | [GitHub](https://github.com/storytold/vectorcraft) | [Website](https://adotme.co/apps/vectorcraft) |
+| <img src="https://raw.githubusercontent.com/storytold/filmcraft/main/assets/app-icon/hicolor/64x64/apps/ai.storyteller.filmcraft.png" alt="" width="32" height="32"> | **FilmCraft** | Video editing, color and sound | [GitHub](https://github.com/storytold/filmcraft) | [Website](https://adotme.co/apps/filmcraft) |
+| <img src="https://raw.githubusercontent.com/storytold/lightcraft/main/assets/app-icon/hicolor/64x64/apps/ai.storyteller.lightcraft.png" alt="" width="32" height="32"> | **LightStudio** | **Photo library and raw development · you are here** | [GitHub](https://github.com/storytold/lightcraft) | [Website](https://adotme.co) |
+| <img src="https://raw.githubusercontent.com/storytold/pdfcraft/main/assets/app-icon/hicolor/64x64/apps/ai.storyteller.pdfcraft.png" alt="" width="32" height="32"> | **PdfCraft** | Reading, organizing and protecting PDFs | [GitHub](https://github.com/storytold/pdfcraft) | [Website](https://adotme.co/apps/pdfcraft) |
+| <img src="https://raw.githubusercontent.com/storytold/effectcraft/main/assets/app-icon/hicolor/64x64/apps/ai.storyteller.effectcraft.png" alt="" width="32" height="32"> | **EffectCraft** | Motion graphics and visual effects | [GitHub](https://github.com/storytold/effectcraft) | [Website](https://adotme.co/apps/effectcraft) |
+| <img src="https://raw.githubusercontent.com/storytold/designcraft/main/assets/app-icon/hicolor/64x64/apps/ai.storyteller.designcraft.png" alt="" width="32" height="32"> | **DesignCraft** | Page layout and publishing | [GitHub](https://github.com/storytold/designcraft) | [Website](https://adotme.co/apps/designcraft) |
 
-And [**ArtCraft**](https://getartcraft.com/) itself, our AI image and video studio for artists who want real control.
+And [**ArtCraft**](https://adotme.co/) itself, our AI image and video studio for artists who want real control.
 
 <br>
 
 <p align="center">
-  <a href="https://discord.gg/artcraft"><img alt="Join the ArtCraft community on Discord" src="https://img.shields.io/badge/Join%20us%20on%20Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" height="40"></a>
+  <a href="https://adotme.co"><img alt="Join the ArtCraft community on Discord" src="https://img.shields.io/badge/Join%20us%20on%20Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" height="40"></a>
 </p>
 
 <h3 align="center">Come make things with us</h3>
@@ -648,37 +654,37 @@ And [**ArtCraft**](https://getartcraft.com/) itself, our AI image and video stud
 </p>
 
 <p align="center">
-  <a href="https://discord.gg/artcraft"><b>discord.gg/artcraft</b></a> ·
-  <a href="https://getartcraft.com/">getartcraft.com</a> ·
-  <a href="https://getartcraft.com/apps">The Crafting Apps</a> ·
-  <a href="https://getartcraft.com/apps/lightcraft">LightCraft</a>
+  <a href="https://adotme.co"><b>discord.gg/artcraft</b></a> ·
+  <a href="https://adotme.co/">getartcraft.com</a> ·
+  <a href="https://adotme.co/apps">The Crafting Apps</a> ·
+  <a href="https://adotme.co">LightStudio</a>
 </p>
 
 <br>
 
 ## License and credits
 
-LightCraft is dual-licensed under [MIT](LICENSE-MIT) or [Apache-2.0](LICENSE-APACHE), at your option.
-Copyright (c) 2026 ArtCraft Team and the LightCraft contributors. Required notices are in [NOTICE](NOTICE).
+LightStudio is dual-licensed under [MIT](LICENSE-MIT) or [Apache-2.0](LICENSE-APACHE), at your option.
+Copyright (c) 2026 ArtCraft Team and the LightStudio contributors. Required notices are in [NOTICE](NOTICE).
 
 Bundled fonts, icons, images and other assets keep their own open licenses; each one is listed
 with its author, source and license in [assets/ATTRIBUTION.md](assets/ATTRIBUTION.md).
 
 Showcase photographs are public-domain works, used via Wikimedia Commons: Ansel Adams, *The Tetons and the Snake River*
 (1942, U.S. National Archives); Dorothea Lange, *Migrant Mother* (1936, Library of Congress); Bill Anders / NASA,
-*Earthrise* (1968); NASA, *The Blue Marble* (1972). The demo library is procedurally generated by LightCraft. UI font:
+*Earthrise* (1968); NASA, *The Blue Marble* (1972). The demo library is procedurally generated by LightStudio. UI font:
 Inter (SIL OFL 1.1). Builds made with [craft-fonts](https://github.com/storytold/craft-fonts) (all official releases)
 also embed its Chinese and Japanese fonts (Noto Sans CJK SC, BIZ UDPGothic, BIZ UDMincho, Shippori Mincho; SIL OFL 1.1), listed in its
 [ATTRIBUTION.md](https://github.com/storytold/craft-fonts/blob/main/ATTRIBUTION.md). All icons are original.
 
 The ArtCraft name, wordmark and logos in [`docs/brand/`](docs/brand/) are trademarks of the
 ArtCraft Team and are not covered by this license. They may be used only unmodified, and only as
-part of this repository and LightCraft, under [`docs/brand/LICENSE-brand.txt`](docs/brand/LICENSE-brand.txt).
+part of this repository and LightStudio, under [`docs/brand/LICENSE-brand.txt`](docs/brand/LICENSE-brand.txt).
 Forks and modified versions must remove them.
 
 <p align="center">
-  <a href="https://getartcraft.com/"><img alt="ArtCraft" src="docs/brand/artcraft-mark.svg" width="28"></a><br>
-  <sub>Made by the <a href="https://getartcraft.com/">ArtCraft</a> team and community.</sub>
+  <a href="https://adotme.co/"><img alt="ArtCraft" src="docs/brand/artcraft-mark.svg" width="28"></a><br>
+  <sub>Made by the <a href="https://adotme.co/">ArtCraft</a> team and community.</sub>
 </p>
 
 ## Star history

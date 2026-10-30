@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-  Build, sign and package LightCraft for Windows.
+  Build, sign and package LightStudio for Windows.
 
 .DESCRIPTION
   Produces, in $env:DIST (default: dist/release):
@@ -15,7 +15,7 @@
 
   Needs: Rust (MSVC toolchain + the target), the Windows SDK (rc.exe, signtool.exe),
   and WiX v5: dotnet tool install --global wix --version 5.0.2
-  The WiX UI and Util extensions (installer dialogs, "Launch LightCraft" on Finish) are added to
+  The WiX UI and Util extensions (installer dialogs, "Launch LightStudio" on Finish) are added to
   the global WiX extension cache by this script (wix extension add -g ..., needs network once).
 
 .EXAMPLE
@@ -80,7 +80,7 @@ New-Item -ItemType Directory -Force -Path $Dist | Out-Null
 if (-not $env:LIGHTCRAFT_BUILD_SHA) { $env:LIGHTCRAFT_BUILD_SHA = (git -C $Root rev-parse HEAD 2>$null) }
 if (-not $env:LIGHTCRAFT_BUILD_DATE) { $env:LIGHTCRAFT_BUILD_DATE = (Get-Date).ToUniversalTime().ToString('yyyy-MM-dd') }
 
-Write-Output "LightCraft $Version for Windows $Arch ($Target)"
+Write-Output "LightStudio $Version for Windows $Arch ($Target)"
 
 if (-not $SkipBuild) {
   . (Join-Path $PSScriptRoot 'fonts.ps1')

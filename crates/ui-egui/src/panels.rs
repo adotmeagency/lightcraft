@@ -139,6 +139,7 @@ pub fn empty_state(ui: &mut egui::Ui, rect: Rect, title: &str, body: &str, actio
         job.halign = egui::Align::Center;
         ui.painter().layout_job(job)
     };
+    let show_brand = title == "Your library is empty";
     let title = centred(ui, crate::i18n::tr(title), t.semibold(18.0), t.text_label);
     let body = centred(ui, crate::i18n::tr(body), t.font(13.0), t.text_dim);
     let hint = hint.map(|h| centred(ui, h, t.font(12.0), t.text_dim));
@@ -158,6 +159,14 @@ pub fn empty_state(ui: &mut egui::Ui, rect: Rect, title: &str, body: &str, actio
     let hint_h = hint.as_ref().map_or(0.0, |g| 12.0 + g.size().y);
     let block = title.size().y + 6.0 + body.size().y + gap_above_buttons + buttons_h + hint_h;
     let top = rect.center().y - block / 2.0;
+    if show_brand {
+        let label = ui.painter().layout_no_wrap("LightStudio".into(), t.semibold(38.0), t.text);
+        let total = label.size().x + 60.0;
+        let left = rect.center().x - total / 2.0;
+        let mark = Rect::from_min_size(pos2(left, top - 76.0), vec2(48.0, 48.0));
+        crate::brand::paint_mark(ui, mark);
+        ui.painter().galley(pos2(mark.right() + 12.0, mark.top()), label, t.text);
+    }
     let p = ui.painter().clone();
     let body_top = top + title.size().y + 6.0;
     let buttons_top = body_top + body.size().y + gap_above_buttons;

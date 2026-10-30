@@ -88,7 +88,7 @@ fn lossy_source(raw: &RawImage, long_edge: Option<u32>) -> Result<RawImage> {
 
 /// Software tag of the DNGs this writer makes. A bare "LightCraft" marks older files, whose CFAPattern is anchored at
 /// the sensor origin instead of the ActiveArea (the reader keeps their original reading).
-pub const SOFTWARE: &str = "LightCraft DNG 2";
+pub const SOFTWARE: &str = "LightStudio DNG 2";
 
 /// zlib level of Deflate tiles. On a 67 MP focus-stack merge (half floats) level 6 took 7× as long as level 1
 /// (3.9 s vs 0.55 s on 4 cores) to save 3 % of the file (266 vs 275 MB); 5–12 % on raw and rendered DNGs.
@@ -214,7 +214,7 @@ pub fn write_dng(raw: &RawImage, opts: &DngWriteOptions) -> Result<Vec<u8>> {
     } else {
         format!("{make} {model}")
     };
-    ifd.set(t::UNIQUE_CAMERA_MODEL, Value::Ascii(if unique.is_empty() { "LightCraft".into() } else { unique }));
+    ifd.set(t::UNIQUE_CAMERA_MODEL, Value::Ascii(if unique.is_empty() { "LightStudio".into() } else { unique }));
     ifd.set(t::ORIENTATION, Value::Short(vec![raw.orientation.to_exif()]));
     ifd.set(t::SOFTWARE, Value::Ascii(SOFTWARE.into()));
     let xmp = opts.xmp.clone().unwrap_or_else(|| lightcraft_meta::write_xmp(&raw.metadata, None));

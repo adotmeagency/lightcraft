@@ -56,7 +56,7 @@ macro_rules! language_table {
                     Some(json) => match serde_json::from_str::<BTreeMap<String, String>>(json) {
                         Ok(mut messages) => {
                             messages.retain(|_, text| !text.is_empty());
-                            messages
+                            messages.into_iter().map(|(key, value)| (studio_names(&key), studio_names(&value))).collect()
                         }
                         Err(error) => {
                             log::error!("Invalid message catalog for {}: {error}", self.code());
@@ -318,10 +318,10 @@ pub fn dropped_photos_unreadable(n: usize) -> String {
 /// (issue #260), in the UI language: the error and, when there is one, the log file to look in.
 pub fn startup_failed_message(error: &str, log_file: Option<&str>) -> (String, String) {
     let text = match log_file {
-        Some(path) => tr_format!("LightCraft could not open its window: {e}\n\nThe log file has the details: {path}", e = error, path = path),
-        None => tr_format!("LightCraft could not open its window: {e}", e = error),
+        Some(path) => tr_format!("LightStudio could not open its window: {e}\n\nThe log file has the details: {path}", e = error, path = path),
+        None => tr_format!("LightStudio could not open its window: {e}", e = error),
     };
-    (tr("LightCraft could not start").to_string(), text)
+    (tr("LightStudio could not start").to_string(), text)
 }
 
 /// The title and text of the message box shown when LightCraft stopped while its window was up
@@ -329,10 +329,10 @@ pub fn startup_failed_message(error: &str, log_file: Option<&str>) -> (String, S
 /// language: what happened and, when there is one, the log file to look in.
 pub fn stopped_message(error: &str, log_file: Option<&str>) -> (String, String) {
     let text = match log_file {
-        Some(path) => tr_format!("LightCraft stopped unexpectedly: {e}\n\nThe log file has the details: {path}", e = error, path = path),
-        None => tr_format!("LightCraft stopped unexpectedly: {e}", e = error),
+        Some(path) => tr_format!("LightStudio stopped unexpectedly: {e}\n\nThe log file has the details: {path}", e = error, path = path),
+        None => tr_format!("LightStudio stopped unexpectedly: {e}", e = error),
     };
-    (tr("LightCraft stopped").to_string(), text)
+    (tr("LightStudio stopped").to_string(), text)
 }
 
 /// Whether sentence case may upper-case `c`. Georgian has no case: upper-casing Mkhedruli would
@@ -592,4 +592,9 @@ mod picker_order_tests {
         let picker: Vec<&str> = Locale::for_picker().into_iter().map(Locale::name).collect();
         assert_eq!(menu, picker, "Edit ▸ Language and the Settings row list the languages the same way");
     }
+}
+
+// Normalize the suite branding once when loading translations.
+fn studio_names(text: &str) -> String {
+    text.replace("PhotoCraft", "PhotoStudio").replace("VectorCraft", "VectorStudio").replace("LightCraft", "LightStudio")
 }

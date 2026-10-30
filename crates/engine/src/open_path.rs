@@ -29,7 +29,7 @@ pub fn openable(path: &str, label: &str) -> Result<String, String> {
         l => l.to_string(),
     };
     if !is_media(p) {
-        return Err(format!("{name} isn't one of the file types LightCraft reads, so it isn't handed to another application"));
+        return Err(format!("{name} isn't one of the file types LightStudio reads, so it isn't handed to another application"));
     }
     match std::fs::metadata(p) {
         Ok(m) if m.is_file() => {}
@@ -40,7 +40,7 @@ pub fn openable(path: &str, label: &str) -> Result<String, String> {
     if let Ok(target) = p.canonicalize()
         && !is_media(&target)
     {
-        return Err(format!("{name} points at {}, which isn't a file type LightCraft reads", target.display()));
+        return Err(format!("{name} points at {}, which isn't a file type LightStudio reads", target.display()));
     }
     let absolute = std::path::absolute(p).map_err(|e| format!("{name}: {e}"))?;
     Ok(absolute.to_string_lossy().into_owned())
@@ -68,12 +68,12 @@ mod tests {
         std::fs::create_dir_all(&dir).unwrap();
         for good in ["DSC_1.NEF", "a.jpg", "copy-Edit.tif", "copy-Edit.psd"] {
             let path = write(&dir, good);
-            assert_eq!(openable(&path, "").unwrap(), path, "{good} is a photo LightCraft reads");
+            assert_eq!(openable(&path, "").unwrap(), path, "{good} is a photo LightStudio reads");
         }
         for bad in ["payload.exe", "shortcut.lnk", "run.bat", "page.hta", "go.command", "no-extension"] {
             let path = write(&dir, bad);
             let e = openable(&path, "").unwrap_err();
-            assert!(e.contains(bad) && e.contains("file types LightCraft reads"), "{bad}: {e}");
+            assert!(e.contains(bad) && e.contains("file types LightStudio reads"), "{bad}: {e}");
         }
         // a bundle (macOS `.app`) and any other folder are not files
         let bundle = dir.join("Evil.app");
